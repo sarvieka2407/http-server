@@ -15,6 +15,10 @@ def start_server():
         client_socket, client_address = server_socket.accept()  # socket object, address info
         print(f"New connection from {client_address}")
 
+        request = client_socket.recv(1024) # receive data from the client, upto 1024 bytes
+        print("Raw Request:")
+        print(request.decode())
+
         client_socket.close()
 
 
