@@ -1,5 +1,6 @@
 import socket
 from config import PORT, HOST
+from core.parser import parse_request
 
 # 1. socket() -> 2. bind() -> 3. listen() -> 4. accept() -> 5. recv() -> 6. send() -> 7. close()
 
@@ -15,12 +16,26 @@ def start_server():
         client_socket, client_address = server_socket.accept()  # socket object, address info
         print(f"New connection from {client_address}")
 
-        request = client_socket.recv(1024) # receive data from the client, upto 1024 bytes
-        print("Raw Request:")
-        print(request.decode())
+        raw_request = client_socket.recv(4096).decode()
+
+        print("Before parser")
+
+        request = parse_request(raw_request)
+
+        print("After parser")
+
+        print(f"Method : {request.method}")
+        print(f"Path   : {request.path}")
+        print(f"Version: {request.version}")
+        print(f"Headers: {request.headers}")
+        print(f"Query  : {request.query_params}")
+        print(f"Body   : {request.body}")
 
         client_socket.close()
 
+       # response = router.handle(request)
+
+      #  client_socket.send(response.to_bytes())
 
 if __name__ == "__main__":
     start_server()
