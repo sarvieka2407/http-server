@@ -1,6 +1,8 @@
 import socket
 from config import PORT, HOST
 from core.parser import parse_request
+from core.request import HTTPRequest
+from core.response import HTTPResponse
 
 # 1. socket() -> 2. bind() -> 3. listen() -> 4. accept() -> 5. recv() -> 6. send() -> 7. close()
 
@@ -18,18 +20,28 @@ def start_server():
 
         raw_request = client_socket.recv(4096).decode()
 
-        print("Before parser")
 
+        
         request = parse_request(raw_request)
 
-        print("After parser")
+        response = HTTPResponse(
+            status_code=200,
+            reason="OK",
+            headers={
+                "Content-Type": "text/plain"
+            },
+            body="Hello, World!"
+        )
 
-        print(f"Method : {request.method}")
-        print(f"Path   : {request.path}")
-        print(f"Version: {request.version}")
-        print(f"Headers: {request.headers}")
-        print(f"Query  : {request.query_params}")
-        print(f"Body   : {request.body}")
+        client_socket.sendall(response.to_bytes())
+
+        print("\n----- Parsed HTTP Request -----")
+        print(f"Method  : {request.method}")
+        print(f"Path    : {request.path}")
+        print(f"Version : {request.version}")
+        print(f"Headers : {request.headers}")
+        print(f"Query   : {request.query_params}")
+        print(f"Body    : {request.body}")
 
         client_socket.close()
 
