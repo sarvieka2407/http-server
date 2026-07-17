@@ -1,0 +1,130 @@
+HTTP/1.1 Server from Scratch (Python)
+
+██████░░░░░░ 55% Complete
+
+──────────────────────────────────────────────
+
+✅ Phase 1 — TCP Server Foundation
+    ✅ Create TCP socket
+    ✅ Bind to host and port
+    ✅ Listen for incoming connections
+    ✅ Accept client connections
+    ✅ Receive raw bytes
+    ✅ Close client connection
+
+──────────────────────────────────────────────
+
+✅ Phase 2 — Receive Raw HTTP Requests
+    ✅ Decode bytes into string
+    ✅ Understand HTTP request format
+    ✅ Read complete HTTP request
+
+──────────────────────────────────────────────
+
+✅ Phase 3 — HTTP Request Parsing
+    ✅ Create HTTPRequest class
+    ✅ Parse request line
+    ✅ Parse query parameters
+    ✅ Parse headers
+    ✅ Parse body
+    ✅ Return HTTPRequest object
+
+──────────────────────────────────────────────
+
+✅ Phase 4 — HTTP Response Builder
+    ✅ Create HTTPResponse class
+    ✅ Build status line
+    ✅ Build headers
+    ✅ Automatically calculate Content-Length
+    ✅ Convert response into HTTP/1.1 format
+    ✅ Encode response into bytes
+    ✅ Send response through socket
+    ✅ Successfully return "Hello, World!"
+
+──────────────────────────────────────────────
+
+🟨 Phase 5 — Routing System (Current)
+
+    ⬜ Create router package
+    ⬜ Create Router class
+    ⬜ Register routes
+    ⬜ Match method + path
+    ⬜ Execute correct handler
+    ⬜ Return HTTPResponse
+    ⬜ Integrate router into server.py
+
+──────────────────────────────────────────────
+
+⬜ Phase 6 — Assignment Endpoints
+
+    ⬜ GET /
+    ⬜ GET /echo
+    ⬜ POST /data
+    ⬜ GET /data
+    ⬜ GET unknown route → 404
+    ⬜ Unsupported method → 405
+
+──────────────────────────────────────────────
+
+⬜ Phase 7 — Data Storage
+
+    ⬜ In-memory storage
+    ⬜ Store POSTed data
+    ⬜ Retrieve stored data
+    ⬜ Handle multiple records
+
+──────────────────────────────────────────────
+
+⬜ Phase 8 — Error Handling
+
+    ⬜ 400 Bad Request
+    ⬜ 404 Not Found
+    ⬜ 405 Method Not Allowed
+    ⬜ 500 Internal Server Error
+
+──────────────────────────────────────────────
+
+⬜ Phase 9 — Bonus Features
+
+    ⬜ Logging
+    ⬜ Better response helpers
+    ⬜ MIME types
+    ⬜ Keep-Alive support
+    ⬜ Static file serving (optional)
+
+──────────────────────────────────────────────
+
+⬜ Phase 10 — Testing
+
+    ⬜ Test with curl
+    ⬜ Test using browser
+    ⬜ Test invalid requests
+    ⬜ Test POST requests
+    ⬜ Test routing
+    ⬜ Test error cases
+
+──────────────────────────────────────────────
+
+⬜ Phase 11 — Documentation & GitHub
+
+    ⬜ README
+    ⬜ Project architecture
+    ⬜ HTTP request lifecycle diagram
+    ⬜ Example curl commands
+    ⬜ Clean commit history
+
+
+Phase 5 : 
+Routing System: right now response is hardcoded, i.e. "Hello, World"
+response = router.handle(request)
+
+        response = HTTPResponse(
+            status_code=200,
+            reason="OK",
+            headers={
+                "Content-Type": "text/plain"
+            },
+            body="Hello, World!"
+        )
+
+this is hardcoded: 
